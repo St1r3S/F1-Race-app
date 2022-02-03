@@ -5,24 +5,17 @@ import ua.foxminded.java8api.columns.ColumnType;
 import ua.foxminded.java8api.tables.TableDescriptorFactory;
 import ua.foxminded.java8api.tables.TableType;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Formatter {
 
-    public String format(TableType type) {
+    public String format(TableDescriptorFactory tableDescriptorFactory, List<ColumnType> columnTypes, ColumnFactory columnFactory, List<Racer> racers, TableType type) {
 
-        Parser parser = new Parser();
-        TableDescriptorFactory tableDescriptorFactory = new TableDescriptorFactory();
-        ColumnFactory columnFactory = new ColumnFactory();
 
-        List<Racer> racers = parser.parseRacer(parser.parseAbbreviations(), parser.parseLaps());
-        List<ColumnType> columnTypes = tableDescriptorFactory.getTable(type).getColumns();
         StringBuilder result = new StringBuilder();
-
         racers = racers.stream().sorted(columnFactory.getColumn(tableDescriptorFactory.getTable(type).getDefaultSortColumnType()).getComparator()).collect(Collectors.toList());
+
         int maxNameLength = racers.stream()
                 .map(racer -> racer.getRacerName().length())
                 .sorted((o1, o2) -> o2 - o1)

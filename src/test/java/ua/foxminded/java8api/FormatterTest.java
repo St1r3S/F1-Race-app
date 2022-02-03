@@ -1,14 +1,25 @@
 package ua.foxminded.java8api;
 
 import org.junit.jupiter.api.Test;
+import ua.foxminded.java8api.columns.ColumnFactory;
+import ua.foxminded.java8api.columns.ColumnType;
+import ua.foxminded.java8api.tables.TableDescriptorFactory;
 import ua.foxminded.java8api.tables.TableType;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FormatterTest {
 
     Formatter formatter = new Formatter();
-    
+    Parser parser = new Parser();
+    ColumnFactory columnFactory = new ColumnFactory();
+    TableDescriptorFactory tableDescriptorFactory = new TableDescriptorFactory();
+
+    List<Racer> racers = parser.parseRacer(parser.parseAbbreviations(), parser.parseLaps());
+
+
     String nameTable = "1  |  Alexander Albon   \n" +
             "2  |  Antonio Giovinazzi\n" +
             "3  |  Carlos Sainz      \n" +
@@ -33,7 +44,8 @@ public class FormatterTest {
 
     @Test
     void shouldVerifyNameTableOutput() {
-        assertEquals(nameTable, formatter.format(TableType.NameTable));
+        List<ColumnType> columnTypes = tableDescriptorFactory.getTable(TableType.NameTable).getColumns();
+        assertEquals(nameTable, formatter.format(tableDescriptorFactory, columnTypes, columnFactory, racers, TableType.NameTable));
     }
 
     String bestLapTable = "1  |  Valtteri Bottas    |  MERCEDES                  |  Lap(start=2019-07-12T12:32:16.692, finish=2019-07-12T12:33:41.785)\n" +
@@ -60,7 +72,8 @@ public class FormatterTest {
 
     @Test
     void shouldVerifyBestLapTableOutput() {
-        assertEquals(bestLapTable, formatter.format(TableType.BestLapTable));
+        List<ColumnType> columnTypes = tableDescriptorFactory.getTable(TableType.BestLapTable).getColumns();
+        assertEquals(bestLapTable, formatter.format(tableDescriptorFactory, columnTypes, columnFactory, racers, TableType.BestLapTable));
     }
 
     String lapCountTable = "1  |  Lewis Hamilton     |  MERCEDES                  |  3\n" +
@@ -87,7 +100,8 @@ public class FormatterTest {
 
     @Test
     void shouldVerifyLapCountTableOutput() {
-        assertEquals(lapCountTable, formatter.format(TableType.LapCountTable));
+        List<ColumnType> columnTypes = tableDescriptorFactory.getTable(TableType.LapCountTable).getColumns();
+        assertEquals(lapCountTable, formatter.format(tableDescriptorFactory, columnTypes, columnFactory, racers, TableType.LapCountTable));
     }
 
     String avgLapTimeTable = "1  |  Pierre Gasly       |  RED BULL RACING HONDA     |  PT57.437S\n" +
@@ -114,6 +128,7 @@ public class FormatterTest {
 
     @Test
     void shouldVerifyAvgLapTimeTableOutput() {
-        assertEquals(avgLapTimeTable, formatter.format(TableType.AvgLapTimeTable));
+        List<ColumnType> columnTypes = tableDescriptorFactory.getTable(TableType.AvgLapTimeTable).getColumns();
+        assertEquals(avgLapTimeTable, formatter.format(tableDescriptorFactory, columnTypes, columnFactory, racers, TableType.AvgLapTimeTable));
     }
 }
