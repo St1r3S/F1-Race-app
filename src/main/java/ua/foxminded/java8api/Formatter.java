@@ -2,6 +2,7 @@ package ua.foxminded.java8api;
 
 import ua.foxminded.java8api.columns.ColumnFactory;
 import ua.foxminded.java8api.columns.ColumnType;
+import ua.foxminded.java8api.tables.TableDescriptor;
 import ua.foxminded.java8api.tables.TableDescriptorFactory;
 import ua.foxminded.java8api.tables.TableType;
 
@@ -10,18 +11,19 @@ import java.util.stream.Collectors;
 
 public class Formatter {
 
-    public String format(TableDescriptorFactory tableDescriptorFactory, List<ColumnType> columnTypes, ColumnFactory columnFactory, List<Racer> racers, TableType type) {
+    public String format(TableDescriptor descriptor, List<Racer> racers) {
 
-
+        ColumnFactory columnFactory = new ColumnFactory();
+        List<ColumnType> columnTypes = descriptor.getColumns();
         StringBuilder result = new StringBuilder();
-        racers = racers.stream().sorted(columnFactory.getColumn(tableDescriptorFactory.getTable(type).getDefaultSortColumnType()).getComparator()).collect(Collectors.toList());
+        racers = racers.stream().sorted(columnFactory.getColumn(descriptor.getDefaultSortColumnType()).getComparator()).collect(Collectors.toList());
 
         int maxNameLength = racers.stream()
                 .map(racer -> racer.getRacerName().length())
                 .sorted((o1, o2) -> o2 - o1)
                 .findFirst().get();
         int maxTeamLength = 0;
-        if (type == TableType.BestLapTable || type == TableType.LapCountTable || type == TableType.AvgLapTimeTable) {
+        if (descriptor.getTitle() == TableType.BestLapTable.toString() || descriptor.getTitle() == TableType.LapCountTable.toString() || descriptor.getTitle() == TableType.AvgLapTimeTable.toString()) {
             maxTeamLength = racers.stream()
                     .map(racer -> racer.getRacerCarName().length())
                     .sorted((o1, o2) -> o2 - o1)
