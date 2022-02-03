@@ -23,7 +23,7 @@ public class Formatter {
                 .sorted((o1, o2) -> o2 - o1)
                 .findFirst().get();
         int maxTeamLength = 0;
-        if (descriptor.getTitle() == TableType.BestLapTable.toString() || descriptor.getTitle() == TableType.LapCountTable.toString() || descriptor.getTitle() == TableType.AvgLapTimeTable.toString()) {
+        if (descriptor.getTitle() != TableType.NameTable.toString()) {
             maxTeamLength = racers.stream()
                     .map(racer -> racer.getRacerCarName().length())
                     .sorted((o1, o2) -> o2 - o1)
