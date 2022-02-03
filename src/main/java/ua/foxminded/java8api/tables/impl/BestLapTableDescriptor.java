@@ -1,6 +1,8 @@
-package ua.foxminded.java8api.tables;
+package ua.foxminded.java8api.tables.impl;
 
 import ua.foxminded.java8api.columns.ColumnType;
+import ua.foxminded.java8api.tables.TableDescriptor;
+import ua.foxminded.java8api.tables.TableType;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -9,16 +11,16 @@ import java.util.List;
 public class BestLapTableDescriptor implements TableDescriptor {
     @Override
     public String getTitle() {
-        return TableType.BestLapTable.toString();
+        return "Best Lap time";
     }
 
     @Override
     public List<ColumnType> getColumns() {
-        return new LinkedList<>(Arrays.asList(ColumnType.NameColumn, ColumnType.TeamColumn, ColumnType.BestLapTimeColumn));
+        return Arrays.asList(ColumnType.NUM, ColumnType.NAME, ColumnType.TEAM, ColumnType.BEST_LAP);
     }
 
     @Override
     public ColumnType getDefaultSortColumnType() {
-        return ColumnType.BestLapTimeColumn;
+        return ColumnType.BEST_LAP;
     }
 }

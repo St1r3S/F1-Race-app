@@ -1,4 +1,7 @@
-package ua.foxminded.java8api;
+package ua.foxminded.java8api.misc;
+
+import ua.foxminded.java8api.model.Lap;
+import ua.foxminded.java8api.model.Racer;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -9,6 +12,18 @@ public class RacerUtility {
 
     private RacerUtility() {
     }
+
+    public static Function<Duration, String> durationToString = (duration) -> {
+        if (duration.equals(ChronoUnit.FOREVER.getDuration())) {
+            return "--:--.---";
+        } else {
+            long millis = duration.toMillis();
+            return String.format("%02d:%02d.%03d",
+                    millis / (60 * 1000),
+                    millis % (60 * 1000) / 1000,
+                    millis % 1000);
+        }
+    };
 
     public static final Function<Lap, Duration> lapDuration = (lap) -> {
         if (lap.getFinish() != null) {

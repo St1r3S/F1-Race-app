@@ -1,14 +1,15 @@
-package ua.foxminded.java8api.columns;
+package ua.foxminded.java8api.columns.impl;
 
-import ua.foxminded.java8api.Racer;
-import ua.foxminded.java8api.RacerUtility;
+import ua.foxminded.java8api.model.Racer;
+import ua.foxminded.java8api.misc.RacerUtility;
+import ua.foxminded.java8api.columns.Column;
 
 import java.util.Comparator;
 
 public class NameColumn implements Column {
     @Override
     public String getTitle() {
-        return ColumnType.NameColumn.toString();
+        return "Name";
     }
 
     @Override

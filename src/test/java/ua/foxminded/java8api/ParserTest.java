@@ -1,6 +1,10 @@
 package ua.foxminded.java8api;
 
 import org.junit.jupiter.api.Test;
+import ua.foxminded.java8api.model.Lap;
+import ua.foxminded.java8api.model.Racer;
+import ua.foxminded.java8api.model.RacerRecord;
+import ua.foxminded.java8api.parser.Parser;
 
 import java.time.LocalDateTime;
 import java.util.*;

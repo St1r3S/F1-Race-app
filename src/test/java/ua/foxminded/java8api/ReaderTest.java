@@ -1,6 +1,7 @@
 package ua.foxminded.java8api;
 
 import org.junit.jupiter.api.Test;
+import ua.foxminded.java8api.parser.Reader;
 
 import static org.junit.jupiter.api.Assertions.*;
 

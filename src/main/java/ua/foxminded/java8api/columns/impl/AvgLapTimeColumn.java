@@ -1,19 +1,20 @@
-package ua.foxminded.java8api.columns;
+package ua.foxminded.java8api.columns.impl;
 
-import ua.foxminded.java8api.Racer;
-import ua.foxminded.java8api.RacerUtility;
+import ua.foxminded.java8api.columns.Column;
+import ua.foxminded.java8api.misc.RacerUtility;
+import ua.foxminded.java8api.model.Racer;
 
 import java.util.Comparator;
 
 public class AvgLapTimeColumn implements Column {
     @Override
     public String getTitle() {
-        return ColumnType.AvgLapTimeColumn.toString();
+        return "Avg.Time";
     }
 
     @Override
     public String getData(Racer racer) {
-        return RacerUtility.avgLapDuration.apply(racer).toString();
+        return RacerUtility.durationToString.compose(RacerUtility.avgLapDuration).apply(racer);
     }
 
     @Override

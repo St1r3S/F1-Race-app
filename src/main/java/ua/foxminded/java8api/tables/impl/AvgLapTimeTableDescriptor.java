@@ -1,6 +1,8 @@
-package ua.foxminded.java8api.tables;
+package ua.foxminded.java8api.tables.impl;
 
 import ua.foxminded.java8api.columns.ColumnType;
+import ua.foxminded.java8api.tables.TableDescriptor;
+import ua.foxminded.java8api.tables.TableType;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -9,16 +11,16 @@ import java.util.List;
 public class AvgLapTimeTableDescriptor implements TableDescriptor {
     @Override
     public String getTitle() {
-        return TableType.AvgLapTimeTable.toString();
+        return "Avg. Lap time";
     }
 
     @Override
     public List<ColumnType> getColumns() {
-        return new LinkedList<>(Arrays.asList(ColumnType.NameColumn, ColumnType.TeamColumn, ColumnType.AvgLapTimeColumn));
+        return Arrays.asList(ColumnType.NUM, ColumnType.NAME, ColumnType.TEAM, ColumnType.AVG_LAP_TIME);
     }
 
     @Override
     public ColumnType getDefaultSortColumnType() {
-        return ColumnType.AvgLapTimeColumn;
+        return ColumnType.AVG_LAP_TIME;
     }
 }
