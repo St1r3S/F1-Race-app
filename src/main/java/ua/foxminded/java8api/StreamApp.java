@@ -21,7 +21,7 @@ public class StreamApp {
             TableDescriptor descriptor = tableDescriptorFactory.getTable(type);
             System.out.println(">> " + descriptor.getTitle() + " <<");
             System.out.println(formatter.format(descriptor, racers));
-            System.out.println("\n\n\n");
+            System.out.println("\n\n\n\n\n");
         }
     }
 }
