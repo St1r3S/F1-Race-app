@@ -4,6 +4,7 @@ import ua.foxminded.java8api.model.Lap;
 import ua.foxminded.java8api.model.Racer;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.function.Function;
@@ -34,6 +35,9 @@ public class RacerUtility {
     };
 
     public static final Function<Racer, Duration> avgLapDuration = (racer) -> {
+        if (racer.getLaps().isEmpty()) {
+            return ChronoUnit.FOREVER.getDuration();
+        }
         Duration dur = lapDuration.apply(racer.getLaps().get(0));
         if (racer.getLaps().size() == 1) {
             return dur;
@@ -48,9 +52,14 @@ public class RacerUtility {
         return dur;
     };
 
-    public static final Function<Racer, Lap> bestLap = (racer) -> racer.getLaps().stream()
-            .sorted(Comparator.comparing(lapDuration::apply))
-            .findFirst().get();
+    public static final Function<Racer, Lap> bestLap = (racer) -> {
+        if (!racer.getLaps().isEmpty()) {
+            return racer.getLaps().stream()
+                    .sorted(Comparator.comparing(lapDuration::apply)).findFirst().get();
+        } else {
+            return new Lap(null, null);
+        }
+    };
 
     public static final Function<Racer, String> name = (racer) -> racer.getRacerName();
 }

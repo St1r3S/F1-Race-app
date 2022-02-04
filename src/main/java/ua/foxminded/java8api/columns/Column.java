@@ -10,5 +10,4 @@ public interface Column {
     String getData(Racer racer);
 
     Comparator<Racer> getComparator();
-
 }
