@@ -1,14 +1,14 @@
-package ua.foxminded.java8api.columns;
+package ua.foxminded.java8api.columns.impl;
 
-import ua.foxminded.java8api.Racer;
-import ua.foxminded.java8api.RacerUtility;
+import ua.foxminded.java8api.model.Racer;
+import ua.foxminded.java8api.columns.Column;
 
 import java.util.Comparator;
 
 public class LapCountColumn implements Column {
     @Override
     public String getTitle() {
-        return ColumnType.LapCountColumn.toString();
+        return "Lap count";
     }
 
 

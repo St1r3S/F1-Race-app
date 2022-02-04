@@ -1,4 +1,4 @@
-package ua.foxminded.java8api;
+package ua.foxminded.java8api.parser;
 
 import java.io.BufferedReader;
 

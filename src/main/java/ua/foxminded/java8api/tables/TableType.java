@@ -1,8 +1,8 @@
 package ua.foxminded.java8api.tables;
 
 public enum TableType {
-    BestLapTable,
-    NameTable,
-    LapCountTable,
-    AvgLapTimeTable
+    BEST_LAP,
+    NAME,
+    LAP_COUNT,
+    AVG_LAP_TIME
 }

@@ -1,4 +1,9 @@
-package ua.foxminded.java8api;
+package ua.foxminded.java8api.parser;
+
+import ua.foxminded.java8api.model.Lap;
+import ua.foxminded.java8api.model.Racer;
+import ua.foxminded.java8api.model.RacerRecord;
+import ua.foxminded.java8api.model.TimeRecord;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

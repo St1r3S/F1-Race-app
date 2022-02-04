@@ -1,24 +1,24 @@
-package ua.foxminded.java8api.tables;
+package ua.foxminded.java8api.tables.impl;
 
 import ua.foxminded.java8api.columns.ColumnType;
+import ua.foxminded.java8api.tables.TableDescriptor;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class NameTableDescriptor implements TableDescriptor {
     @Override
     public String getTitle() {
-        return TableType.NameTable.toString();
+        return "Racers list";
     }
 
     @Override
     public List<ColumnType> getColumns() {
-        return new LinkedList<>(Arrays.asList(ColumnType.NameColumn));
+        return Arrays.asList(ColumnType.NUM, ColumnType.NAME);
     }
 
     @Override
     public ColumnType getDefaultSortColumnType() {
-        return ColumnType.NameColumn;
+        return ColumnType.NAME;
     }
 }
